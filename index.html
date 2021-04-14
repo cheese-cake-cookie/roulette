@@ -11,18 +11,24 @@
       position: relative;
       display: flex;
       justify-content: center;
-      padding: 50px;
-      width: 500px;
-      height: 500px;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .roulette::after {
+      content: '';
+      padding-bottom: 100%;
     }
 
     .pointer {
       position: absolute;
       width: 50px;
       height: 50px;
-      top: 0px;
+      top: -10px;
       background: red;
       z-index: 9;
+
     }
 
     .pointer::after {
@@ -41,7 +47,7 @@
     .wrap {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: inherit;
       border-radius: 50%;
       background-color: gray;
     }
@@ -93,8 +99,8 @@
       position: relative;
       margin: 0px;
       padding: 0px;
-      width: inherit;
-      height: inherit;
+      width: 100%;
+      height: 100%;
       list-style: none;
       overflow: hidden;
       border-radius: inherit;
@@ -124,13 +130,13 @@
       position: absolute;
       transform-origin: 100% 100%;
       background: #fff;
-      width: 250px;
-      height: 250px;
+      width: 50%;
+      height: 50%;
       left: 50%;
       top: 50%;
       border: 1px solid #999;
-      margin-top: -250px;
-      margin-left: -250px;
+      margin-top: -50%;
+      margin-left: -50%;
       display: flex;
       justify-content: center;
       align-items: center;
