@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>보상형 광고 프로토타입</title>
+  <style>
+    .roulette {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 50px;
+      width: 500px;
+      height: 500px;
+    }
+
+    .pointer {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      top: 0px;
+      background: red;
+      z-index: 9;
+    }
+
+    .pointer::after {
+      content: '';
+      position: absolute;
+      top: 31px;
+      left: 7px;
+      width: 35.5px;
+      height: 35.5px;
+      background: red;
+      transform: rotate(45deg);
+      z-index: -1;
+      border: inherit;
+    }
+
+    .wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: gray;
+    }
+
+    .wrap::after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      bottom: -20px;
+      left: -20px;
+      right: -20px;
+      border-radius: 50%;
+      background: royalblue;
+      box-shadow: 0px 0px 7px 1px darkblue;
+      z-index: -1;
+    }
+
+    .coin {
+      position: absolute;
+      right: -100px;
+      bottom: 0px;
+      width: 200px;
+      height: 185px;
+      background-size: cover;
+      background-image: url('./coin.png');
+    }
+
+    .actions {
+      position: absolute;
+      margin-top: -50px;
+      margin-left: -50px;
+      top: 50%;
+      left: 50%;
+    }
+
+    .button {
+      width: 100px;
+      height: 100px;
+      box-sizing: border-box;
+      border: 4px solid black;
+      border-radius: 50px;
+      font-size: 25px;
+      color: #fff;
+      background: cadetblue;
+      box-shadow: 0px 0px 7px 1px black;
+    }
+
+    .product__list {
+      position: relative;
+      margin: 0px;
+      padding: 0px;
+      width: inherit;
+      height: inherit;
+      list-style: none;
+      overflow: hidden;
+      border-radius: inherit;
+    }
+
+    .product__list.rotate {
+      animation-duration: 5s;
+      animation-name: rotate;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
+      /* 완료 상태 유지 */
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate3d(0, 0, 1, 0deg);
+      }
+
+      to {
+        /* 당첨 상품의 degree */
+        transform: rotate3d(0, 0, 1, 2900deg);
+      }
+    }
+
+    .product__item {
+      position: absolute;
+      transform-origin: 100% 100%;
+      background: #fff;
+      width: 250px;
+      height: 250px;
+      left: 50%;
+      top: 50%;
+      border: 1px solid #999;
+      margin-top: -250px;
+      margin-left: -250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: lightpink;
+    }
+
+    .product__item:nth-child(2n) {
+      background: lightyellow;
+    }
+
+    .product__item:nth-child(1) {
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    .product__item:nth-child(2) {
+      transform: rotate3d(0, 0, 1, 90deg);
+    }
+
+    .product__item:nth-child(3) {
+      transform: rotate3d(0, 0, 1, 180deg);
+    }
+
+    .product__item:nth-child(4) {
+      transform: rotate3d(0, 0, 1, 270deg);
+    }
+
+    .product__item:nth-child(1)>p {
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    .product__item:nth-child(2)>p {
+      transform: rotate3d(0, 0, 1, -90deg);
+    }
+
+    .product__item:nth-child(3)>p {
+      transform: rotate3d(0, 0, 1, -180deg);
+    }
+
+    .product__item:nth-child(4)>p {
+      transform: rotate3d(0, 0, 1, -270deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="roulette">
+    <div class="pointer"></div>
+    <div class="wrap">
+      <ul class="product__list">
+        <li class="product__item">
+          <p>3000캐시</p>
+        </li>
+        <li class="product__item">
+          <p>5000캐시</p>
+        </li>
+        <li class="product__item">
+          <p>7000캐시</p>
+        </li>
+        <li class="product__item">
+          <p>100000캐시</p>
+        </li>
+      </ul>
+      <div class="actions">
+        <button class="button" onclick="startRoulette()">start</button>
+      </div>
+      <div class="coin"></div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  const roulette = document.querySelector('.roulette');
+  const startRoulette = () => {
+    roulette.querySelector('.product__list').classList.add('rotate');
+  }
+</script>
+
+</html>
