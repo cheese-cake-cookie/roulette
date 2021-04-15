@@ -21,7 +21,7 @@
       padding-bottom: 100%;
     }
 
-    .pointer {
+    .roulette__pointer {
       position: absolute;
       width: 50px;
       height: 50px;
@@ -31,7 +31,7 @@
 
     }
 
-    .pointer::after {
+    .roulette__pointer::after {
       content: '';
       position: absolute;
       top: 31px;
@@ -44,7 +44,7 @@
       border: inherit;
     }
 
-    .wrap {
+    .roulette__wrap {
       position: relative;
       width: 100%;
       height: inherit;
@@ -52,7 +52,7 @@
       background-color: gray;
     }
 
-    .wrap::after {
+    .roulette__wrap::after {
       content: '';
       position: absolute;
       top: -20px;
@@ -107,10 +107,10 @@
     }
 
     .product__list.rotate {
-      animation-duration: 5s;
+      animation-duration: 8s;
       animation-name: rotate;
       animation-iteration-count: 1;
-      animation-timing-function: ease-in-out;
+      animation-timing-function: cubic-bezier(.49, 0, .17, 1.04);
       animation-fill-mode: forwards;
       /* 완료 상태 유지 */
     }
@@ -139,78 +139,81 @@
       margin-left: -50%;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
       background: lightpink;
+      box-sizing: border-box;
     }
 
     .product__item:nth-child(2n) {
       background: lightyellow;
     }
-
-    .product__item:nth-child(1) {
-      transform: rotate3d(0, 0, 1, 0deg);
-    }
-
-    .product__item:nth-child(2) {
-      transform: rotate3d(0, 0, 1, 90deg);
-    }
-
-    .product__item:nth-child(3) {
-      transform: rotate3d(0, 0, 1, 180deg);
-    }
-
-    .product__item:nth-child(4) {
-      transform: rotate3d(0, 0, 1, 270deg);
-    }
-
-    .product__item:nth-child(1)>p {
-      transform: rotate3d(0, 0, 1, 0deg);
-    }
-
-    .product__item:nth-child(2)>p {
-      transform: rotate3d(0, 0, 1, -90deg);
-    }
-
-    .product__item:nth-child(3)>p {
-      transform: rotate3d(0, 0, 1, -180deg);
-    }
-
-    .product__item:nth-child(4)>p {
-      transform: rotate3d(0, 0, 1, -270deg);
-    }
   </style>
 </head>
 
 <body>
-  <div class="roulette">
-    <div class="pointer"></div>
-    <div class="wrap">
+  <div id="roulette" class="roulette">
+    <div class="roulette__pointer"></div>
+    <div class="roulette__wrap">
       <ul class="product__list">
+        <!-- 
         <li class="product__item">
           <p>3000캐시</p>
         </li>
-        <li class="product__item">
-          <p>5000캐시</p>
-        </li>
-        <li class="product__item">
-          <p>7000캐시</p>
-        </li>
-        <li class="product__item">
-          <p>100000캐시</p>
-        </li>
+        -->
       </ul>
       <div class="actions">
-        <button class="button" onclick="startRoulette()">start</button>
+        <button class="button">start</button>
       </div>
       <div class="coin"></div>
     </div>
   </div>
 </body>
 <script type="text/javascript">
-  const roulette = document.querySelector('.roulette');
-  const startRoulette = () => {
+  const WINNING_NUMBER = 1; // 당첨 상품 id
+  const PRODUCTS = [
+    { id: 1, name: '1000캐시', cash: 1000 },
+    { id: 2, name: '2000캐시', cash: 2000 },
+    { id: 3, name: '3000캐시', cash: 3000 },
+    { id: 4, name: '4000캐시', cash: 4000 },
+    { id: 5, name: '5000캐시', cash: 5000 },
+    { id: 6, name: '6000캐시', cash: 6000 },
+    // { id: 7, name: '7000캐시', cash: 7000 },
+    // { id: 8, name: '8000캐시', cash: 8000 },
+    // { id: 9, name: '9000캐시', cash: 9000 },
+    // { id: 10, name: '10000캐시', cash: 10000 },
+    // { id: 11, name: '10000캐시', cash: 11000 },
+    // { id: 12, name: '10000캐시', cash: 12000 },
+  ];
+  const angle = 360 / PRODUCTS.length;
+
+  const roulette = document.getElementById('roulette');
+  const productList = roulette.querySelector('.product__list');
+  const startButton = roulette.querySelector('.actions > .button');
+
+  startButton.addEventListener('click', () => {
     roulette.querySelector('.product__list').classList.add('rotate');
+  });
+
+  const renderItem = ({ name }, index) => {
+    const itemStyle = `
+      transform: rotate3d(0, 0, 1, ${index * angle}deg) skew(${PRODUCTS.length * 5}deg);
+    `;
+    const titleStyle = `
+      transform: skew(-${PRODUCTS.length * 5}deg);
+    `;
+
+    return `
+      <li class="product__item" style="${itemStyle}">
+        <p style="${titleStyle}">${name}</p>
+      </li>`;
   }
+
+  const renderItems = () => {
+    const itemHTML = PRODUCTS.map((item, index) => renderItem(item, index)).join('');
+    productList.innerHTML = itemHTML;
+  }
+
+  renderItems();
 </script>
 
 </html>
