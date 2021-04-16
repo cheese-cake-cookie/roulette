@@ -103,24 +103,6 @@
       overflow: hidden;
       border-radius: inherit;
     }
-
-    .slot__item {
-      position: absolute;
-      transform-origin: 100% 100%;
-      background: #fff;
-      width: 50%;
-      height: 50%;
-      left: 50%;
-      top: 50%;
-      border: 1px solid #999;
-      margin-top: -50%;
-      margin-left: -50%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      background: lightpink;
-      box-sizing: border-box;
-    }
   </style>
 </head>
 
@@ -139,7 +121,8 @@
   </div>
 </body>
 <script type="text/javascript">
-  const COLORS = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink'];
+  // const COLORS = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple', 'midnightblue', 'mediumpurple', 'black', 'pink', 'mintcream'];
+  const COLORS = ['yellow', 'white'];
   const WINNING_NUMBER = 2; // 당첨 상품 id
   const SLOTS = [
     { id: 1, name: '1000캐시', cash: 1000 },
@@ -150,8 +133,8 @@
     { id: 6, name: '6000캐시', cash: 6000 },
     { id: 7, name: '7000캐시', cash: 7000 },
     { id: 8, name: '8000캐시', cash: 8000 },
-    // { id: 9, name: '9000캐시', cash: 9000 },
-    // { id: 10, name: '10000캐시', cash: 10000 },
+    { id: 9, name: '9000캐시', cash: 9000 },
+    { id: 10, name: '10000캐시', cash: 10000 },
     // { id: 11, name: '10000캐시', cash: 11000 },
     // { id: 12, name: '10000캐시', cash: 12000 },
   ];
@@ -181,7 +164,8 @@
     const startDegree = index * degreeOfSlot + rotateDegree + degreeOfPointer; // pointer 위치를 0도로 산정하기 위함
     const endDegree = index * degreeOfSlot + degreeOfSlot + rotateDegree + degreeOfPointer;
 
-    ctx.fillStyle = COLORS[index];
+    ctx.fillStyle = COLORS[index % 2];
+    ctx.strokeStyle = COLORS[index % 2];
     ctx.beginPath();
     ctx.arc($canvas.width / 2, $canvas.height / 2, $canvas.width / 2, degreeToRadius(startDegree), degreeToRadius(endDegree));
     ctx.lineTo($canvas.width / 2, $canvas.height / 2);
@@ -215,7 +199,7 @@
       return;
     }
 
-    rotateDegree += 5;
+    rotateDegree += 5; // @FIXME 가속도 처리
     renderItems();
     window.requestAnimationFrame(rotateRoullete);
   };
