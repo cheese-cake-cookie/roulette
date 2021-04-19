@@ -1,0 +1,96 @@
+.roulette {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.roulette::after {
+  content: '';
+  padding-bottom: 100%;
+}
+
+.roulette__pointer {
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  top: -10px;
+  z-index: 9;
+  overflow: hidden;
+}
+
+.roulette__pointer::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  width: 100%;
+  height: 100%;
+  background: black;
+  transform: rotate(45deg);
+  z-index: -1;
+  border: inherit;
+}
+
+.roulette__wrap {
+  position: relative;
+  width: 100%;
+  height: inherit;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+.roulette__wrap::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  left: -20px;
+  right: -20px;
+  border-radius: 50%;
+  background: royalblue;
+  box-shadow: 0px 0px 7px 1px darkblue;
+  z-index: -1;
+}
+
+.coin {
+  position: absolute;
+  right: -100px;
+  bottom: 0px;
+  width: 200px;
+  height: 185px;
+  background-size: cover;
+  background-image: url('./coin.png');
+}
+
+.actions {
+  position: absolute;
+  margin-top: -50px;
+  margin-left: -50px;
+  top: 50%;
+  left: 50%;
+}
+
+.button {
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  border: 4px solid black;
+  border-radius: 50px;
+  font-size: 25px;
+  color: #fff;
+  background: cadetblue;
+  box-shadow: 0px 0px 7px 1px black;
+}
+
+.slot__list {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
