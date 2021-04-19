@@ -123,7 +123,7 @@
 <script type="text/javascript">
   const COLORS = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple', 'midnightblue', 'mediumpurple', 'black', 'pink', 'mintcream'];
   // const COLORS = ['yellow', 'white'];
-  const WINNING_NUMBER = 3; // 당첨 상품 id
+  const WINNING_NUMBER = 4; // 당첨 상품 id
   const SLOTS = [
     { id: 1, name: '1000캐시', cash: 1000 },
     { id: 2, name: '2000캐시', cash: 2000 },
@@ -133,8 +133,8 @@
     { id: 6, name: '6000캐시', cash: 6000 },
     { id: 7, name: '7000캐시', cash: 7000 },
     { id: 8, name: '8000캐시', cash: 8000 },
-    { id: 9, name: '9000캐시', cash: 9000 },
-    { id: 10, name: '10000캐시', cash: 10000 },
+    // { id: 9, name: '9000캐시', cash: 9000 },
+    // { id: 10, name: '10000캐시', cash: 10000 },
     // { id: 11, name: '10000캐시', cash: 11000 },
     // { id: 12, name: '10000캐시', cash: 12000 },
   ];
@@ -142,6 +142,7 @@
   const degreeOfPointer = -90; // 캔버스 대지 0도를 기준으로 pointer의 위치
   const degreeOfSlot = 360 / SLOTS.length;
   const rotateCount = 7;
+  let rotateAnimationRequest = null;
   let rotateDegree = 0; // 룰렛 drawing 기준 degree
   let currentTime = 0;
 
@@ -209,13 +210,14 @@
     const rotateTo = rotateCount * 360 - getRandomArbitrary(winnerItemIndex * degreeOfSlot, (winnerItemIndex + 1) * degreeOfSlot);
 
     if (rotateDegree >= rotateTo) {
+      window.cancelAnimationFrame(rotateAnimationRequest);
       return;
     }
 
     currentTime += 1;
     rotateDegree += easeInOutCirc(currentTime, 0, rotateTo - rotateDegree, 800);
     renderItems();
-    window.requestAnimationFrame(rotateRoullete);
+    rotateAnimationRequest = window.requestAnimationFrame(rotateRoullete);
   };
 
   renderItems();
