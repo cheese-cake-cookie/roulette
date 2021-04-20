@@ -8,19 +8,44 @@
   <title>보상형 광고 프로토타입</title>
   <link rel="stylesheet" href="./roulette.css">
   <script src="./roulette.js" defer></script>
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .roulette-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-image: url('./background.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .roulette {
+      width: 90%;
+      margin: 0px auto;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="roulette" class="roulette">
-    <div class="roulette__pointer"></div>
-    <div class="roulette__wrap">
-      <canvas id="canvas" class="slot__list">
-        해당 기기에서는 지원하지 않는 기능입니다.
-      </canvas>
-      <div class="actions">
-        <button class="button">start</button>
+  <div class="roulette-container">
+    <div id="roulette" class="roulette">
+      <div class="roulette__pointer"></div>
+      <div class="roulette__wrap">
+        <canvas id="canvas" class="slot__list">
+          해당 기기에서는 지원하지 않는 기능입니다.
+        </canvas>
+        <div class="actions">
+          <button class="button">C</button>
+        </div>
+        <!-- <div class="coin"></div> -->
       </div>
-      <!-- <div class="coin"></div> -->
     </div>
   </div>
 </body>

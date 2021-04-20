@@ -1,5 +1,5 @@
-// const COLORS = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple', 'midnightblue', 'mediumpurple', 'black', 'pink', 'mintcream'];
-const COLORS = ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c', '#2e7d32'];
+const COLORS = ['#e6e6e6', '#fff'];
+// const COLORS = ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c', '#2e7d32'];
 const WINNING_NUMBER = 4; // 당첨 상품 id
 const SLOTS = [
   { id: 1, name: '1000캐시', cash: 1000 },
@@ -45,8 +45,8 @@ const renderItem = (index, item) => {
   const centerDegree = startDegree + degreeOfSlot / 2;
   const text = ctx.measureText(item.name);
 
-  ctx.fillStyle = COLORS[index];
-  ctx.strokeStyle = COLORS[index];
+  ctx.fillStyle = COLORS[index % 2];
+  ctx.strokeStyle = COLORS[index % 2];
   ctx.beginPath();
   ctx.arc($canvas.width / 2, $canvas.height / 2, $canvas.width / 2, degreeToRadian(startDegree), degreeToRadian(endDegree));
   ctx.lineTo($canvas.width / 2, $canvas.height / 2);
@@ -54,16 +54,16 @@ const renderItem = (index, item) => {
   ctx.fill();
   ctx.save();
 
-  ctx.translate($canvas.width / 2, $canvas.height / 2);
-  ctx.font = '14px serif';
-  ctx.fillStyle = 'black';
+  // ctx.translate($canvas.width / 2, $canvas.height / 2);
+  // ctx.font = '14px serif';
+  // ctx.fillStyle = 'black';
 
-  for (let i = 0; i < item.name.length; i += 1) {
-    const radius = $canvas.width / 4 + ((text.width / item.name.length) * i);
-    ctx.fillText(item.name[i], Math.cos(degreeToRadian(centerDegree)) * radius, Math.sin(degreeToRadian(centerDegree)) * radius);
-  }
+  // for (let i = 0; i < item.name.length; i += 1) {
+  //   const radius = $canvas.width / 4 + ((text.width / item.name.length) * i);
+  //   ctx.fillText(item.name[i], Math.cos(degreeToRadian(centerDegree)) * radius, Math.sin(degreeToRadian(centerDegree)) * radius);
+  // }
 
-  ctx.restore();
+  // ctx.restore();
 }
 
 const getCircleX = (radians, radius) => {
