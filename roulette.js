@@ -2,14 +2,14 @@ const COLORS = ['#e6e6e6', '#fff'];
 // const COLORS = ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c', '#2e7d32'];
 const WINNING_NUMBER = 4; // 당첨 상품 id
 const SLOTS = [
-  { id: 1, name: '1000캐시', cash: 1000 },
-  { id: 2, name: '2000캐시', cash: 2000 },
-  { id: 3, name: '3000캐시', cash: 3000 },
-  { id: 4, name: '4000캐시', cash: 4000 },
-  { id: 5, name: '5000캐시', cash: 5000 },
-  { id: 6, name: '6000캐시', cash: 6000 },
-  { id: 7, name: '7000캐시', cash: 7000 },
-  { id: 8, name: '8000캐시', cash: 8000 },
+  { id: 1, name: '1캐시', cash: 1 },
+  { id: 2, name: '100캐시', cash: 100 },
+  { id: 3, name: '500캐시', cash: 500 },
+  { id: 4, name: '700캐시', cash: 700 },
+  { id: 5, name: '1,000캐시', cash: 1000 },
+  { id: 6, name: '3,000캐시', cash: 3000 },
+  // { id: 7, name: '7000캐시', cash: 7000 },
+  // { id: 8, name: '8000캐시', cash: 8000 },
   // { id: 9, name: '9000캐시', cash: 9000 },
   // { id: 10, name: '10000캐시', cash: 10000 },
   // { id: 11, name: '10000캐시', cash: 11000 },
@@ -54,16 +54,15 @@ const renderItem = (index, item) => {
   ctx.fill();
   ctx.save();
 
-  // ctx.translate($canvas.width / 2, $canvas.height / 2);
-  // ctx.font = '14px serif';
-  // ctx.fillStyle = 'black';
+  const textRadius = $canvas.width / 2 - 40;
 
-  // for (let i = 0; i < item.name.length; i += 1) {
-  //   const radius = $canvas.width / 4 + ((text.width / item.name.length) * i);
-  //   ctx.fillText(item.name[i], Math.cos(degreeToRadian(centerDegree)) * radius, Math.sin(degreeToRadian(centerDegree)) * radius);
-  // }
-
-  // ctx.restore();
+  ctx.translate($canvas.width / 2 + Math.cos(degreeToRadian((centerDegree))) * textRadius, $canvas.height / 2 + Math.sin(degreeToRadian((centerDegree))) * textRadius);
+  ctx.rotate(degreeToRadian(centerDegree + 90));
+  ctx.font = '18px Apple SD Gothic Neo';
+  ctx.textBaseline = 'top';
+  ctx.fillStyle = 'black';
+  ctx.fillText(item.name, ctx.measureText(item.name).width / 2 * -1, 0);
+  ctx.restore();
 }
 
 const getCircleX = (radians, radius) => {
