@@ -14,6 +14,3 @@
   ```
 - CanvasRenderingContext2D.restore(): 저장된 스택 중 가장 최근 state를 불러옴. 저장된 state가 없다면 아무 동작도 하지 않는다.
 
-
-### reference
-https://github.com/ddkangfu/wheel/blob/master/src/wheel.js
