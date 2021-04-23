@@ -65,15 +65,6 @@ const renderItem = (index, item) => {
   ctx.restore();
 }
 
-const getCircleX = (radians, radius) => {
-  return Math.cos(radians) * radius;
-}
-
-const getCircleY = (radians, radius) => {
-  return Math.sin(radians) * radius;
-}
-
-
 const renderItems = () => {
   ctx.clearRect(0, 0, $canvas.width, $canvas.height);
 
