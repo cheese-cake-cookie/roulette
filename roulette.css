@@ -19,7 +19,7 @@
   top: -10px;
   z-index: 9;
   overflow: hidden;
-  background-image: url(./pointer.png);
+  background-image: url(./images/pointer.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position-x: center;
@@ -41,9 +41,6 @@
   left: -20px;
   right: -20px;
   border-radius: 50%;
-  /* background-image: url("./roulette_bg.png");
-  background-repeat: no-repeat;
-  background-size: cover; */
   box-shadow: 0px 0px 0px 7px rgb(103 58 183 / 50%);
   background: #673ab7;
 }
@@ -55,7 +52,7 @@
   width: 200px;
   height: 185px;
   background-size: cover;
-  background-image: url("./coin.png");
+  background-image: url("./images/coin.png");
 }
 
 .actions {
