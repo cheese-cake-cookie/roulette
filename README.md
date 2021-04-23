@@ -1,16 +1,10 @@
 # roulette
 
-### 캔버스 태그를 이용한 룰렛
+css 애니메이션을 활용한 회전 효과로 최초 구현하였으나 정지 시점을 데이터에 따라 컨트롤 할 수 있도록 최종적으로는 canvas를 사용하여 구현함.
 
+- feature/basic branch uses css animation for rotating effect.
+- master branch uses canvas for rotating effect.
 
-- CanvasRenderingContext2D.save(): 캔버스의 현재 상태를 스택에 넣어 모든 state를 저장하는 canvas 2D API
-  ```
-  스택에 저장되는 상태 정보
-  - transformation matrix.
-  - current clipping region.
-  - current dash list.
-  - current values of the following attributes: 
-  strokeStyle, fillStyle, globalAlpha, lineWidth, lineCap, lineJoin, miterLimit, lineDashOffset, shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor, globalCompositeOperation, font, textAlign, textBaseline, direction, imageSmoothingEnabled.
-  ```
-- CanvasRenderingContext2D.restore(): 저장된 스택 중 가장 최근 state를 불러옴. 저장된 state가 없다면 아무 동작도 하지 않는다.
+### 실제 작동 모습
 
+![roulette](https://user-images.githubusercontent.com/59796421/115878462-8bea6f00-a483-11eb-9ee5-c738ed1dc095.gif)
